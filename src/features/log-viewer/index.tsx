@@ -18,10 +18,9 @@ export function LogViewer() {
   }
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold">Log Viewer</h1>
+    <div className="grid h-dvh grid-rows-[minmax(0,1fr)_minmax(0,2fr)] gap-4 p-4">
       {groupByResourceNode}
-      <Table data={data} groupByResource={groupByResource} />
+      <Table data={data} />
     </div>
   );
 }

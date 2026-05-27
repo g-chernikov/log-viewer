@@ -5,6 +5,7 @@
 - Env validation
 - Server data validation
 - SSR
+- OTLP schemas validation, migration
 
 ## Decisions
 
@@ -14,9 +15,10 @@
 - Tailwind
 - ShadCN
 - Tan-stack query
+- Tan-stack table (despite it's less efficient)
+- Tan stack virtual
 - Ref
 
 ### Arch
 
 - Rely on the API types
-- Don't use table helpers
