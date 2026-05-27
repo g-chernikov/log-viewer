@@ -17,5 +17,8 @@ export function useLogs() {
   return useQuery({
     queryKey: ["logs"],
     queryFn: () => fetchLogs(),
+    select: (data) => {
+      return data.resourceLogs ?? [];
+    },
   });
 }
