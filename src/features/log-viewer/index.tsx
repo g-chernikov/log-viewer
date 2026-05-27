@@ -2,13 +2,14 @@
 
 import { useLogs } from "@/api/logs";
 import { Table } from "./table";
-import { useGroupByResourceSwitch } from "./group-by-resource-switch";
+import { useGroupingCombobox } from "./table/use-grouping-combobox";
 
 export function LogViewer() {
   const { data, isPending, error } = useLogs();
 
-  const { groupByResource, node: groupByResourceNode } =
-    useGroupByResourceSwitch();
+  const { grouping, setGrouping, node: groupingComboboxNode } =
+    useGroupingCombobox();
+
   if (isPending) {
     return <div>Loading...</div>;
   }
@@ -18,9 +19,9 @@ export function LogViewer() {
   }
 
   return (
-    <div className="grid h-dvh grid-rows-[minmax(0,1fr)_minmax(0,2fr)] gap-4 p-4">
-      {groupByResourceNode}
-      <Table data={data} />
+    <div className="grid h-dvh grid-rows-[auto_minmax(0,1fr)] gap-4 p-4">
+      {groupingComboboxNode}
+      <Table data={data} grouping={grouping} setGrouping={setGrouping} />
     </div>
   );
 }

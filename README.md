@@ -6,6 +6,8 @@
 - Server data validation
 - SSR
 - OTLP schemas validation, migration
+- Auto-testing
+- Data updates
 
 ## Decisions
 
@@ -22,3 +24,7 @@
 ### Arch
 
 - Rely on the API types
+
+## Tradeoffs
+
+- Auto ids for resources

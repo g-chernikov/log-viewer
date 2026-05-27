@@ -1,5 +1,7 @@
 import { Badge } from "@/components/ui/badge";
-import type { AnyValue } from "../types";
+import type { TableRowData } from "./types";
+
+type AnyValue = TableRowData["body"];
 
 type RenderableBodyValue =
   | { type: "string"; value: string }
