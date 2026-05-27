@@ -17,9 +17,10 @@
 - Tailwind
 - ShadCN
 - Tan-stack query
-- Tan-stack table (despite it's less efficient)
+- Tan-stack table
 - Tan stack virtual
 - Ref
+- ECharts
 
 ### Arch
 
@@ -28,3 +29,5 @@
 ## Tradeoffs
 
 - Auto ids for resources
+- Not optimal data flow
+- Histogram is a derivative from the table data

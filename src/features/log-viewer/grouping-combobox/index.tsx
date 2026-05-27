@@ -1,7 +1,6 @@
 "use client";
 
 import { useId, useMemo, useState } from "react";
-import type { GroupingState } from "@tanstack/react-table";
 
 import {
   Combobox,
@@ -15,38 +14,25 @@ import {
   ComboboxTrigger,
   ComboboxValue,
 } from "@/components/ui/combobox";
-import { columns } from "./columns";
-
-type GroupingComboboxProps = {
-  value: GroupingState;
-  onValueChange: (value: GroupingState) => void;
-};
-
-const options = columns
-  .map((column) => ({
-    label: column.header,
-    value: column.id,
-  }))
-  .filter(
-    (option): option is { label: string; value: string } =>
-      typeof option.label === "string" && typeof option.value === "string",
-  );
-
-type GroupingOption = (typeof options)[number];
-
-const optionByValue = new Map(
-  options.map((option) => [option.value, option] as const),
-);
+import type { GroupingComboboxOption, GroupingComboboxProps } from "./types";
 
 export function GroupingCombobox({
-  value,
-  onValueChange,
+  grouping,
+  options,
+  setGrouping,
 }: GroupingComboboxProps) {
   const inputId = useId();
-  const selectedValue = value.flatMap((columnId) => {
-    const option = optionByValue.get(columnId);
-    return option ? [option] : [];
-  });
+  const optionByValue = useMemo(() => {
+    return new Map(options.map((option) => [option.value, option] as const));
+  }, [options]);
+  const selectedValue = useMemo(
+    () =>
+      grouping.flatMap((columnId) => {
+        const option = optionByValue.get(columnId);
+        return option ? [option] : [];
+      }),
+    [grouping, optionByValue],
+  );
   const [inputValue, setInputValue] = useState("");
   const filteredOptions = useMemo(() => {
     const normalizedInputValue = inputValue.trim().toLowerCase();
@@ -58,16 +44,16 @@ export function GroupingCombobox({
     return options.filter((option) =>
       option.label.toLowerCase().includes(normalizedInputValue),
     );
-  }, [inputValue]);
+  }, [inputValue, options]);
 
   return (
-    <Combobox<GroupingOption, true>
+    <Combobox<GroupingComboboxOption, true>
       items={options}
       filteredItems={filteredOptions}
       multiple
       value={selectedValue}
       onValueChange={(nextValue) =>
-        onValueChange(nextValue.map((option) => option.value))
+        setGrouping(nextValue.map((option) => option.value))
       }
       onInputValueChange={setInputValue}
       itemToStringLabel={(option) => option.label}
@@ -99,7 +85,7 @@ export function GroupingCombobox({
       <ComboboxContent sideOffset={4}>
         <ComboboxEmpty>No columns found.</ComboboxEmpty>
         <ComboboxList>
-          {(option: GroupingOption) => (
+          {(option: GroupingComboboxOption) => (
             <ComboboxItem key={option.value} value={option}>
               {option.label}
             </ComboboxItem>

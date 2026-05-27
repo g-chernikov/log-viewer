@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/table";
 
 import { getColumnSizeStyle } from "./column-size";
-import type { TableRowData } from "./types";
+import type { TableRowData } from "../types";
 
 type TableHeaderProps = {
   table: TanStackTable<TableRowData>;
@@ -26,7 +26,10 @@ export function TableHeader({ table }: TableHeaderProps) {
             >
               {header.isPlaceholder
                 ? null
-                : flexRender(header.column.columnDef.header, header.getContext())}
+                : flexRender(
+                    header.column.columnDef.header,
+                    header.getContext(),
+                  )}
             </TableHead>
           ))}
         </TableRow>

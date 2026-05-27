@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import type { TableRowData } from "./types";
+import type { TableRowData } from "../types";
 
 type AnyValue = TableRowData["body"];
 

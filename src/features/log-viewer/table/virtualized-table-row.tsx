@@ -4,7 +4,8 @@ import { flexRender, type Cell, type Row } from "@tanstack/react-table";
 import { TableCell, TableRow } from "@/components/ui/table";
 
 import { LogRowDetails } from "./log-row-details";
-import type { TableRowData } from "./types";
+import type { TableRowData } from "../types";
+import { fallbackGroupingValue } from "../utils";
 
 type VirtualizedTableRowProps = {
   row: Row<TableRowData>;
@@ -35,7 +36,7 @@ export function VirtualizedTableRow({
       {isGroupedRow ? (
         <TableCell>
           <span aria-hidden>{row.getIsExpanded() ? "-" : "+"}</span>
-          {row.getGroupingValue(row.groupingColumnId!) as string}
+          {fallbackGroupingValue(row.getGroupingValue(row.groupingColumnId!))}
           <span className="text-muted-foreground">({row.subRows.length})</span>
         </TableCell>
       ) : (

@@ -1,4 +1,4 @@
-import { getDateFromUnixNano } from "./time";
+import { getDateFromUnixNano } from "../time";
 import type { Fixed64 } from "@/api/logs";
 
 const timeFormatter = new Intl.DateTimeFormat(undefined, {

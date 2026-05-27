@@ -5,7 +5,7 @@ import { useVirtualizer } from "@tanstack/react-virtual";
 import { TableBody } from "@/components/ui/table";
 import { measureTableRow } from "@/lib/utils";
 
-import type { TableRowData } from "./types";
+import type { TableRowData } from "../types";
 import { VirtualizedTableRow } from "./virtualized-table-row";
 
 type VirtualizedTableBodyProps = {
@@ -20,7 +20,7 @@ export function VirtualizedTableBody({
   const { rows } = table.getRowModel();
   const rowVirtualizer = useVirtualizer<HTMLDivElement, HTMLTableRowElement>({
     count: rows.length,
-    estimateSize: () => 24,
+    estimateSize: () => 36,
     getScrollElement: () => tableContainerRef.current,
     measureElement: measureTableRow,
     overscan: 5,
