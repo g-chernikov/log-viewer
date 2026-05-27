@@ -5,13 +5,19 @@ import {
   IExportLogsServiceRequest,
   IResourceLogs,
   ILogRecord,
+  Resource,
 } from "@opentelemetry/otlp-transformer/build/src/logs/internal-types";
 
 function fetchLogs(): Promise<IExportLogsServiceRequest> {
   return fetch(`${LOGS_API_URL}`).then((response) => response.json());
 }
 
-export { type IExportLogsServiceRequest, type IResourceLogs, type ILogRecord };
+export {
+  type IExportLogsServiceRequest,
+  type IResourceLogs,
+  type ILogRecord,
+  type Resource,
+};
 
 export function useLogs() {
   return useQuery({
