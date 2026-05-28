@@ -4,7 +4,7 @@ https://log-viewer-liard.vercel.app
 
 Standard Next.js setup - use `npm run dev` to start the dev server.
 
-(_Just in case_ - yes, it's completely human written.)
+(_Just in case_ - yes, the readme is completely human written.)
 
 ## Scope
 
