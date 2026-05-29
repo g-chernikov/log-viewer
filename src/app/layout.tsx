@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Providers } from "@/components/providers";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <Providers>{children}</Providers>
+        <Analytics />
       </body>
     </html>
   );
